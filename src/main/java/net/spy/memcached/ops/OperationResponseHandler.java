@@ -27,20 +27,19 @@ package net.spy.memcached.ops;
  */
 public interface  OperationResponseHandler<T> {
 
-
-    /**
-     * Method invoked when the operation completes successfully.
-     *
-     * @param result the result of the operation
-     */    
-    void onSuccess(T result);
+ /**
+  * Method invoked when the operation completes successfully.
+  *
+  * @param result the result of the operation
+  */    
+  void onSuccess(T result);
 
     
-    /**
-     * Method invoked when exception occurs in an operation.
-     *
-     * @param ex the exception generated in the operation
-     */    
-    void onError(Exception ex);
+ /**
+  * Method invoked when exception occurs in an operation.
+  *
+  * @param ex the exception generated in the operation
+  */    
+  void onError(Exception ex);
 
 }

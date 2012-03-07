@@ -34,38 +34,38 @@ import net.spy.memcached.ops.OperationResponseHandler;
  */
 public class  StoreOperationHandler implements OperationCallback {
 
-    private OperationFuture<Boolean> opF;
-    private CountDownLatch latch;
-    private OperationResponseHandler<Boolean> respH;
+  private OperationFuture<Boolean> opF;
+  private CountDownLatch latch;
+  private OperationResponseHandler<Boolean> respH;
 
-    StoreOperationHandler(OperationFuture<Boolean> oF, CountDownLatch l, OperationResponseHandler<Boolean> rH){
-	opF = oF;
-	latch = l;
-	respH = rH;
-    }
+  public StoreOperationHandler(OperationFuture<Boolean> oF, CountDownLatch l, OperationResponseHandler<Boolean> rH){
+    opF = oF;
+    latch = l;
+    respH = rH;
+  }
 
-  /**
-   * Method invoked with the status when the operation is complete.
-   *
-   * @param status the result of the operation
-   */
-    public void receivedStatus(OperationStatus status){
-	opF.set(status.isSuccess(), status);
-	if (respH != null){
-	    try{
-		respH.onSuccess(opF.get());
-	    } catch (Exception ex){
-		respH.onError(ex);
-	    }
-	}
+ /**
+  * Method invoked with the status when the operation is complete.
+  *
+  * @param status the result of the operation
+  */
+  public void receivedStatus(OperationStatus status){
+    opF.set(status.isSuccess(), status);
+    if (respH != null){
+      try{
+        respH.onSuccess(opF.get());
+      } catch (Exception ex){
+        respH.onError(ex);
+      }
     }
+  }
 
-  /**
-   * Called whenever an operation completes.
-   */
-    public void complete(){
-	latch.countDown();
-    }
+ /**
+  * Called whenever an operation completes.
+  */
+  public void complete(){
+    latch.countDown();
+  }
 
 }
 

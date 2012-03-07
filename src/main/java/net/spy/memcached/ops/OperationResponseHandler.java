@@ -34,12 +34,12 @@ public interface  OperationResponseHandler<T> {
   */    
   void onSuccess(T result);
 
-    
  /**
   * Method invoked when exception occurs in an operation.
   *
   * @param ex the exception generated in the operation
+  * @param message for the reason of failure
   */    
-  void onError(Exception ex);
+  void onError(Exception ex, String message);
 
 }

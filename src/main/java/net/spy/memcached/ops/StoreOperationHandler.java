@@ -53,9 +53,9 @@ public class  StoreOperationHandler implements OperationCallback {
     opF.set(status.isSuccess(), status);
     if (respH != null){
       if (status.isSuccess()){
-	respH.onSuccess(true); 
+        respH.onSuccess(true); 
       }else{
-	respH.onError(opF.getOperation().getException(), status.getMessage());
+        respH.onError(opF.getOperation().getException(), status.getMessage());
       }
     }
   }

@@ -33,6 +33,7 @@ import java.util.concurrent.TimeUnit;
 
 import net.spy.memcached.internal.BulkFuture;
 import net.spy.memcached.transcoders.Transcoder;
+import net.spy.memcached.ops.OperationResponseHandler;
 
 /**
  * This interface is provided as a helper for testing clients of the
@@ -72,15 +73,27 @@ public interface MemcachedClientIF {
 
   <T> Future<Boolean> add(String key, int exp, T o, Transcoder<T> tc);
 
+  <T> void add(String key, int exp, T o, Transcoder<T> tc, OperationResponseHandler<Boolean> rh);
+
   Future<Boolean> add(String key, int exp, Object o);
+
+  void add(String key, int exp, Object o, OperationResponseHandler<Boolean> rh);
 
   <T> Future<Boolean> set(String key, int exp, T o, Transcoder<T> tc);
 
+  <T> void set(String key, int exp, T o, Transcoder<T> tc, OperationResponseHandler<Boolean> rh);
+
   Future<Boolean> set(String key, int exp, Object o);
+
+  void set(String key, int exp, Object o, OperationResponseHandler<Boolean> rh);
 
   <T> Future<Boolean> replace(String key, int exp, T o, Transcoder<T> tc);
 
+  <T> void replace(String key, int exp, T o, Transcoder<T> tc, OperationResponseHandler<Boolean> rh);
+
   Future<Boolean> replace(String key, int exp, Object o);
+
+  void replace(String key, int exp, Object o, OperationResponseHandler<Boolean> rh);
 
   <T> Future<T> asyncGet(String key, Transcoder<T> tc);
 
